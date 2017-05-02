@@ -1,7 +1,7 @@
 # Space Defender
 Space Defender is an iOS 10 SpriteKit based game where you control a spaceship hurtling through the vacuum of space.
 
-![](art/screenshot/space-defender-01.gif?raw=true)
+![](art/screenshot/space-defender-02.gif?raw=true)
 
 ### Contributing
 See [CONTRIBUTING](CONTRIBUTING.md).

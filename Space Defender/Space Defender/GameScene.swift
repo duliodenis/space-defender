@@ -25,6 +25,7 @@ class GameScene: SKScene {
         spaceship.name = "spaceship"
         addChild(spaceship)
         
+        animateSpaceship()
     }
     
     
@@ -36,4 +37,18 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
     }
+    
+    
+    // MARK: - Spaceship Animation
+    
+    func animateSpaceship() {
+        let rightMovement = SKAction.moveTo(x: size.width * 0.80, duration: 2.5)
+        let leftMovement = SKAction.moveTo(x: size.width * 0.20, duration: 2.5)
+        
+        let sequence = SKAction.sequence([rightMovement, leftMovement])
+        let animation = SKAction.repeatForever(sequence)
+        
+        spaceship.run(animation)
+    }
+    
 }
