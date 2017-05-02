@@ -12,6 +12,12 @@ import GameplayKit
 class GameScene: SKScene {
     
     let spaceship = SKSpriteNode(imageNamed: "rocket")
+    // to keep track of the drag
+    var moveableNode: SKNode?
+    // to keep track of the spaceship original position
+    var spaceshipStartX: CGFloat = 0.0
+    var spaceshipStartY: CGFloat = 0.0
+    
     
     override func didMove(to view: SKView) {
         // midnight blue background
@@ -25,12 +31,44 @@ class GameScene: SKScene {
         spaceship.name = "spaceship"
         addChild(spaceship)
         
-        animateSpaceship()
+        // animateSpaceship()
     }
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-
+        if let touch = touches.first {
+            let touchLocation = touch.location(in: self)
+            
+            // if the spaceship is being tapped then make it the moveableNode
+            if spaceship.contains(touchLocation) {
+                moveableNode = spaceship
+                spaceshipStartX = (moveableNode?.position.x)! - touchLocation.x
+                spaceshipStartY = (moveableNode?.position.y)! - touchLocation.y
+            }
+        }
+    }
+    
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first, moveableNode != nil {
+            let location = touch.location(in: self)
+            // update the moveableNode's position
+            moveableNode!.position = CGPoint(x: location.x + spaceshipStartX, y: location.y + spaceshipStartY)
+        }
+    }
+    
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let _ = touches.first, moveableNode != nil {
+            moveableNode = nil
+        }
+    }
+    
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let _ = touches.first {
+            moveableNode = nil
+        }
     }
     
     
