@@ -15,6 +15,10 @@
 		6CBADBB01EB7C80900DFF135 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CBADBAE1EB7C80900DFF135 /* Main.storyboard */; };
 		6CBADBB21EB7C80900DFF135 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CBADBB11EB7C80900DFF135 /* Assets.xcassets */; };
 		6CBADBB51EB7C80900DFF135 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CBADBB31EB7C80900DFF135 /* LaunchScreen.storyboard */; };
+		6CBADBC11EB8DBA400DFF135 /* explosionSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6CBADBBD1EB8DBA400DFF135 /* explosionSound.mp3 */; };
+		6CBADBC21EB8DBA400DFF135 /* gameOverSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6CBADBBE1EB8DBA400DFF135 /* gameOverSound.mp3 */; };
+		6CBADBC31EB8DBA400DFF135 /* laserBeamSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6CBADBBF1EB8DBA400DFF135 /* laserBeamSound.mp3 */; };
+		6CBADBC41EB8DBA400DFF135 /* spaceDefenderBackgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6CBADBC01EB8DBA400DFF135 /* spaceDefenderBackgroundMusic.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,10 @@
 		6CBADBB11EB7C80900DFF135 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6CBADBB41EB7C80900DFF135 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6CBADBB61EB7C80900DFF135 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6CBADBBD1EB8DBA400DFF135 /* explosionSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = explosionSound.mp3; path = Audio/explosionSound.mp3; sourceTree = "<group>"; };
+		6CBADBBE1EB8DBA400DFF135 /* gameOverSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = gameOverSound.mp3; path = Audio/gameOverSound.mp3; sourceTree = "<group>"; };
+		6CBADBBF1EB8DBA400DFF135 /* laserBeamSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = laserBeamSound.mp3; path = Audio/laserBeamSound.mp3; sourceTree = "<group>"; };
+		6CBADBC01EB8DBA400DFF135 /* spaceDefenderBackgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = spaceDefenderBackgroundMusic.mp3; path = Audio/spaceDefenderBackgroundMusic.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,8 +77,20 @@
 				6CBADBB11EB7C80900DFF135 /* Assets.xcassets */,
 				6CBADBB31EB7C80900DFF135 /* LaunchScreen.storyboard */,
 				6CBADBB61EB7C80900DFF135 /* Info.plist */,
+				6CBADBBC1EB8D94000DFF135 /* Audio */,
 			);
 			path = "Space Defender";
+			sourceTree = "<group>";
+		};
+		6CBADBBC1EB8D94000DFF135 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				6CBADBBD1EB8DBA400DFF135 /* explosionSound.mp3 */,
+				6CBADBBE1EB8DBA400DFF135 /* gameOverSound.mp3 */,
+				6CBADBBF1EB8DBA400DFF135 /* laserBeamSound.mp3 */,
+				6CBADBC01EB8DBA400DFF135 /* spaceDefenderBackgroundMusic.mp3 */,
+			);
+			name = Audio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,7 +154,11 @@
 			files = (
 				6CBADBB01EB7C80900DFF135 /* Main.storyboard in Resources */,
 				6CBADBA71EB7C80900DFF135 /* GameScene.sks in Resources */,
+				6CBADBC41EB8DBA400DFF135 /* spaceDefenderBackgroundMusic.mp3 in Resources */,
+				6CBADBC11EB8DBA400DFF135 /* explosionSound.mp3 in Resources */,
 				6CBADBB21EB7C80900DFF135 /* Assets.xcassets in Resources */,
+				6CBADBC21EB8DBA400DFF135 /* gameOverSound.mp3 in Resources */,
+				6CBADBC31EB8DBA400DFF135 /* laserBeamSound.mp3 in Resources */,
 				6CBADBB51EB7C80900DFF135 /* LaunchScreen.storyboard in Resources */,
 				6CBADBA91EB7C80900DFF135 /* Actions.sks in Resources */,
 			);
@@ -311,6 +335,7 @@
 				6CBADBBB1EB7C80900DFF135 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
