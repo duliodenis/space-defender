@@ -18,6 +18,9 @@ class GameScene: SKScene {
     var spaceshipStartX: CGFloat = 0.0
     var spaceshipStartY: CGFloat = 0.0
     
+    let shootButton = SKSpriteNode(imageNamed: "shootButton")
+    let laserBeamSound = SKAction.playSoundFileNamed("laserBeamSound.mp3", waitForCompletion: false)
+    
     
     override func didMove(to view: SKView) {
         // midnight blue background
@@ -32,18 +35,32 @@ class GameScene: SKScene {
         addChild(spaceship)
         
         // animateSpaceship()
+        
+        // position, scale, and anchor the shoot button
+        shootButton.position = CGPoint(x: size.width * 0.80, y: size.height * 0.15)
+        shootButton.setScale(0.2)
+        shootButton.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        shootButton.zPosition = 10
+        shootButton.name = "shootButton"
+        addChild(shootButton)
     }
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
             let touchLocation = touch.location(in: self)
+            let touchedNode = atPoint(touchLocation)
             
             // if the spaceship is being tapped then make it the moveableNode
             if spaceship.contains(touchLocation) {
                 moveableNode = spaceship
                 spaceshipStartX = (moveableNode?.position.x)! - touchLocation.x
                 spaceshipStartY = (moveableNode?.position.y)! - touchLocation.y
+            }
+            
+            if touchedNode.name == "shootButton" {
+                run(laserBeamSound)
+                shootLaserBeam()
             }
         }
     }
@@ -87,6 +104,32 @@ class GameScene: SKScene {
         let animation = SKAction.repeatForever(sequence)
         
         spaceship.run(animation)
+    }
+    
+    
+    // MARK: - Laser Beam Animation
+    
+    func shootLaserBeam() {
+        let laserBeam = SKSpriteNode(imageNamed: "laserBeam")
+        
+        // anchor, scale, name and set the laser beam position
+        laserBeam.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        laserBeam.zPosition = 3
+        laserBeam.setScale(0.10)
+        laserBeam.name = "laserBeam"
+        laserBeam.position = spaceship.position
+        addChild(laserBeam)
+        
+        // set motion constants and destroy once complete
+        let moveY = size.height
+        let moveDuration = 1.5
+        let move = SKAction.moveBy(x: 0, y: moveY, duration: moveDuration)
+        let remove = SKAction.removeFromParent()
+        
+        // define sequence of motion and removal
+        let sequence = SKAction.sequence([move, remove])
+        
+        laserBeam.run(sequence)
     }
     
 }
