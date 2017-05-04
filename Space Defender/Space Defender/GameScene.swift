@@ -43,6 +43,8 @@ class GameScene: SKScene {
         shootButton.zPosition = 10
         shootButton.name = "shootButton"
         addChild(shootButton)
+        
+        addStarfields()
     }
     
     
@@ -130,6 +132,69 @@ class GameScene: SKScene {
         let sequence = SKAction.sequence([move, remove])
         
         laserBeam.run(sequence)
+    }
+    
+    
+    // MARK: Starfield background
+    
+    func addStarfields() {
+        let starTexture = SKTexture(imageNamed: "spark")
+        
+        // Emitter 1: Near field
+        let nearEmitter = SKEmitterNode()
+        nearEmitter.particleTexture = starTexture
+        nearEmitter.particleBirthRate = 15
+        nearEmitter.particleLifetime = 45
+        nearEmitter.emissionAngle = CGFloat(90.0).degreesToRadians()
+        nearEmitter.emissionAngleRange = CGFloat(360.0).degreesToRadians()
+        nearEmitter.yAcceleration = -5
+        nearEmitter.particleSpeed = 30
+        nearEmitter.particleAlpha = 0.0
+        nearEmitter.particleAlphaSpeed = 0.5
+        nearEmitter.particleScale = 0.005
+        nearEmitter.particleScaleRange = 0.0075
+        nearEmitter.particleScaleSpeed = 0.01
+        nearEmitter.particleColorBlendFactor = 1.0
+        // clouds stars
+        nearEmitter.particleColor = SKColor(red: 236/256, green: 240/256, blue: 241/256, alpha: 1.0)
+        nearEmitter.position = CGPoint(x: frame.width / 2, y: frame.height * 1.75)
+        nearEmitter.zPosition = -4
+        nearEmitter.advanceSimulationTime(45)
+        addChild(nearEmitter)
+        
+        // Emitter 2: Far field
+        let farEmitter = SKEmitterNode()
+        farEmitter.particleTexture = starTexture
+        farEmitter.particleBirthRate = 10
+        farEmitter.particleLifetime = 180
+        farEmitter.emissionAngle = CGFloat(90.0).degreesToRadians()
+        farEmitter.emissionAngleRange = CGFloat(360.0).degreesToRadians()
+        farEmitter.yAcceleration = 0
+        farEmitter.particleSpeed = 30
+        farEmitter.particleAlpha = 0.0
+        farEmitter.particleAlphaSpeed = 0.5
+        farEmitter.particleScale = 0.0005
+        farEmitter.particleScaleRange = 0.0005
+        farEmitter.particleScaleSpeed = 0.005
+        farEmitter.particleColorBlendFactor = 1.0
+        // clouds stars
+        farEmitter.particleColor = SKColor(red: 236/256, green: 240/256, blue: 241/256, alpha: 1.0)
+        farEmitter.position = CGPoint(x: frame.width / 2, y: frame.height * 1.75)
+        farEmitter.zPosition = -5
+        farEmitter.advanceSimulationTime(180)
+        addChild(farEmitter)
+    }
+    
+}
+
+
+// MARK: - CGFloat Extension
+
+extension CGFloat {
+    
+    public func degreesToRadians() -> CGFloat {
+        let π = CGFloat(M_PI)
+        return π * self / 180.0
     }
     
 }
