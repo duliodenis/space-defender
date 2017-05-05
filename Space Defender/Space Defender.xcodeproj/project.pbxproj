@@ -19,6 +19,7 @@
 		6CBADBC21EB8DBA400DFF135 /* gameOverSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6CBADBBE1EB8DBA400DFF135 /* gameOverSound.mp3 */; };
 		6CBADBC31EB8DBA400DFF135 /* laserBeamSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6CBADBBF1EB8DBA400DFF135 /* laserBeamSound.mp3 */; };
 		6CBADBC41EB8DBA400DFF135 /* spaceDefenderBackgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6CBADBC01EB8DBA400DFF135 /* spaceDefenderBackgroundMusic.mp3 */; };
+		6CBADBC61EBBD91900DFF135 /* engineExhaust.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6CBADBC51EBBD91900DFF135 /* engineExhaust.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		6CBADBBE1EB8DBA400DFF135 /* gameOverSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = gameOverSound.mp3; path = Audio/gameOverSound.mp3; sourceTree = "<group>"; };
 		6CBADBBF1EB8DBA400DFF135 /* laserBeamSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = laserBeamSound.mp3; path = Audio/laserBeamSound.mp3; sourceTree = "<group>"; };
 		6CBADBC01EB8DBA400DFF135 /* spaceDefenderBackgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = spaceDefenderBackgroundMusic.mp3; path = Audio/spaceDefenderBackgroundMusic.mp3; sourceTree = "<group>"; };
+		6CBADBC51EBBD91900DFF135 /* engineExhaust.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = engineExhaust.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 			children = (
 				6CBADBA41EB7C80900DFF135 /* AppDelegate.swift */,
 				6CBADBA61EB7C80900DFF135 /* GameScene.sks */,
+				6CBADBC51EBBD91900DFF135 /* engineExhaust.sks */,
 				6CBADBA81EB7C80900DFF135 /* Actions.sks */,
 				6CBADBAA1EB7C80900DFF135 /* GameScene.swift */,
 				6CBADBAC1EB7C80900DFF135 /* GameViewController.swift */,
@@ -154,6 +157,7 @@
 			files = (
 				6CBADBB01EB7C80900DFF135 /* Main.storyboard in Resources */,
 				6CBADBA71EB7C80900DFF135 /* GameScene.sks in Resources */,
+				6CBADBC61EBBD91900DFF135 /* engineExhaust.sks in Resources */,
 				6CBADBC41EB8DBA400DFF135 /* spaceDefenderBackgroundMusic.mp3 in Resources */,
 				6CBADBC11EB8DBA400DFF135 /* explosionSound.mp3 in Resources */,
 				6CBADBB21EB7C80900DFF135 /* Assets.xcassets in Resources */,

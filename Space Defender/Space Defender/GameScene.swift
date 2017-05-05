@@ -21,6 +21,8 @@ class GameScene: SKScene {
     let shootButton = SKSpriteNode(imageNamed: "shootButton")
     let laserBeamSound = SKAction.playSoundFileNamed("laserBeamSound.mp3", waitForCompletion: false)
     
+    let engineExhaust = SKEmitterNode(fileNamed: "engineExhaust.sks")
+
     
     override func didMove(to view: SKView) {
         // midnight blue background
@@ -33,6 +35,11 @@ class GameScene: SKScene {
         spaceship.zPosition = 5
         spaceship.name = "spaceship"
         addChild(spaceship)
+        
+        // add exhaust to rocket
+        engineExhaust?.position = CGPoint(x: 0.0, y: -(spaceship.size.height) * 1.3)
+        engineExhaust?.setScale(3)
+        spaceship.addChild(engineExhaust!)
         
         // animateSpaceship()
         
