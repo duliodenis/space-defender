@@ -52,6 +52,12 @@ class GameScene: SKScene {
         addChild(shootButton)
         
         addStarfields()
+        
+        // spawn some aliens
+        let wait = SKAction.wait(forDuration: 2.0)
+        let constantSpawn = SKAction.run { self.spawnInvader() }
+        let spawnSequence = SKAction.sequence([wait, constantSpawn])
+        run(SKAction.repeatForever(spawnSequence))
     }
     
     
@@ -103,7 +109,7 @@ class GameScene: SKScene {
     }
     
     
-    // MARK: - Spaceship Animation
+    // MARK: - Spaceship and Invader Animation
     
     func animateSpaceship() {
         let rightMovement = SKAction.moveTo(x: size.width * 0.80, duration: 2.5)
@@ -113,6 +119,36 @@ class GameScene: SKScene {
         let animation = SKAction.repeatForever(sequence)
         
         spaceship.run(animation)
+    }
+    
+    
+    func spawnInvader() {
+        // scale, position, and name the alien invader
+        let invader = SKSpriteNode(imageNamed: "ufo_scarlet")
+        invader.setScale(0.30)
+        invader.zPosition = 7
+        invader.name = "invader"
+        invader.position = CGPoint(
+            x: CGFloat.random(min: -200, max: size.width + 200),
+            y: size.height + 200)
+        addChild(invader)
+        
+        // add a wobble effect
+        let leftRotation = SKAction.rotate(byAngle: 3.14 / 8.0, duration: 0.5)
+        let rightRotation = leftRotation.reversed()
+        let fullRotation = SKAction.sequence([leftRotation, rightRotation])
+        invader.run(SKAction.repeatForever(fullRotation))
+        
+        // animate the invader from off screen randomly towards the rocket
+        let destination = CGPoint(
+            x: CGFloat.random(min: 0, max: size.width),
+            y: -200) // off screen
+        let invaderMove = SKAction.move(to: destination, duration: 4)
+        let invaderRemove = SKAction.removeFromParent()
+        
+        // set the animation sequence
+        let animation = SKAction.sequence([invaderMove, invaderRemove])
+        invader.run(animation)
     }
     
     
@@ -195,13 +231,24 @@ class GameScene: SKScene {
 }
 
 
-// MARK: - CGFloat Extension
+// MARK: - CGFloat Extensions
 
 extension CGFloat {
     
     public func degreesToRadians() -> CGFloat {
         let π = CGFloat(M_PI)
         return π * self / 180.0
+    }
+    
+    
+    static func random() -> CGFloat {
+        return CGFloat(Float(arc4random()) / Float(UInt32.max))
+    }
+    
+    
+    static func random(min minimum: CGFloat, max maximum: CGFloat) -> CGFloat {
+        assert(minimum < maximum)
+        return CGFloat.random() * (maximum - minimum) + minimum
     }
     
 }
