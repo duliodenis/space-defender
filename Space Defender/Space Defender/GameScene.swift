@@ -20,8 +20,14 @@ class GameScene: SKScene {
     
     let shootButton = SKSpriteNode(imageNamed: "shootButton")
     let laserBeamSound = SKAction.playSoundFileNamed("laserBeamSound.mp3", waitForCompletion: false)
+    let explosionSound = SKAction.playSoundFileNamed("explosionSound.mp3", waitForCompletion: false)
     
     let engineExhaust = SKEmitterNode(fileNamed: "engineExhaust.sks")
+    
+    // keep track of collisions
+    var spaceshipHit = false
+    var isPlaying = true
+    
 
     
     override func didMove(to view: SKView) {
@@ -109,6 +115,32 @@ class GameScene: SKScene {
     }
     
     
+    override func didEvaluateActions() {
+        checkForCollisions()
+    }
+    
+    
+    func checkForCollisions() {
+        // did the invader collide with the rocket?
+        enumerateChildNodes(withName: "invader") { node, _ in
+            let invader = node as! SKSpriteNode
+            
+            // if the two boundaries of this invader and the spaceship are touching
+            if invader.frame.intersects(self.spaceship.frame) {
+                // check to see that this is the first time hit
+                if self.spaceshipHit == false {
+                    self.spaceshipHitByInvader()
+                } else if self.spaceshipHit == true {
+                    // otherwise its already been hit - and return
+                    return
+                }
+            }
+        }
+        
+        // TODO: - Laser/Invader Collision Detection
+    }
+    
+    
     // MARK: - Spaceship and Invader Animation
     
     func animateSpaceship() {
@@ -149,6 +181,33 @@ class GameScene: SKScene {
         // set the animation sequence
         let animation = SKAction.sequence([invaderMove, invaderRemove])
         invader.run(animation)
+    }
+    
+    
+    func spaceshipHitByInvader() {
+        spaceshipHit = true
+        
+        // during invincibility have a blink animation
+        let blinkTimes = 15.0   // blinks
+        let duration = 3.0      // seconds
+        
+        let blinkAction = SKAction.customAction(withDuration: duration) { node, elapsedTime in
+            // smooth intervals
+            let slice = duration / blinkTimes
+            let remainder = Double(elapsedTime).truncatingRemainder(dividingBy: slice)
+            // set to hide
+            node.isHidden = remainder > slice / 2
+        }
+        
+        let setHiddenAction = SKAction.run() { [weak self] in
+            self?.spaceship.isHidden = false
+            self?.spaceshipHit = false
+        }
+        
+        spaceship.run(SKAction.sequence([blinkAction, setHiddenAction]))
+        
+        // explosion sound
+        run(explosionSound)
     }
     
     
