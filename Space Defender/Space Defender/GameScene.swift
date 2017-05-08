@@ -28,11 +28,25 @@ class GameScene: SKScene {
     var spaceshipHit = false
     var isPlaying = true
     
-
+    // life tracking
+    var lives = 3
+    let livesLabel = SKLabelNode(fontNamed: "Menlo")
+    
     
     override func didMove(to view: SKView) {
         // midnight blue background
         backgroundColor = SKColor(red: 44/256, green: 62/256, blue: 80/256, alpha: 1.0)
+        
+        // Set-up the Lives Label
+        livesLabel.text = "Lives: \(lives)"
+        // Cloud Font Color
+        livesLabel.fontColor = SKColor(red: 236/256, green: 240/256, blue: 241/256, alpha: 1.0)
+        livesLabel.fontSize = 75
+        livesLabel.zPosition = 10
+        livesLabel.horizontalAlignmentMode = .center
+        livesLabel.verticalAlignmentMode = .center
+        livesLabel.position = CGPoint(x: size.width / 2, y: size.height - 100)
+        addChild(livesLabel)
         
         // position, scale and anchor the spaceship
         spaceship.position = CGPoint(x: size.width * 0.2, y: size.height * 0.2)
@@ -111,7 +125,7 @@ class GameScene: SKScene {
     
     
     override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
+        livesLabel.text = "Lives: \(lives)"
     }
     
     
@@ -208,6 +222,9 @@ class GameScene: SKScene {
         
         // explosion sound
         run(explosionSound)
+        
+        // decrement one life
+        lives -= 1
     }
     
     
