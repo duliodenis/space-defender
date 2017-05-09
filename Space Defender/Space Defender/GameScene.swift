@@ -8,6 +8,8 @@
 
 import SpriteKit
 import GameplayKit
+import AVFoundation
+
 
 class GameScene: SKScene {
     
@@ -32,10 +34,15 @@ class GameScene: SKScene {
     var lives = 3
     let livesLabel = SKLabelNode(fontNamed: "Menlo")
     
+    var backgroundMusicPlayer = AVAudioPlayer()
+    
     
     override func didMove(to view: SKView) {
         // midnight blue background
         backgroundColor = SKColor(red: 44/256, green: 62/256, blue: 80/256, alpha: 1.0)
+        
+        // background music
+        playBackgroundMusic()
         
         // Set-up the Lives Label
         livesLabel.text = "Lives: \(lives)"
@@ -302,6 +309,22 @@ class GameScene: SKScene {
         farEmitter.zPosition = -5
         farEmitter.advanceSimulationTime(180)
         addChild(farEmitter)
+    }
+    
+    
+    // MARK: - Background Music
+    
+    func playBackgroundMusic() {
+        do {
+            let path = Bundle.main.path(forResource: "spaceDefenderBackgroundMusic", ofType: "mp3")
+            backgroundMusicPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path!))
+            backgroundMusicPlayer.volume = 0.7
+            backgroundMusicPlayer.numberOfLoops = -1 // loop forever
+            backgroundMusicPlayer.prepareToPlay()
+            backgroundMusicPlayer.play()
+        } catch {
+            print("Error loading audio for background music.")
+        }
     }
     
 }
